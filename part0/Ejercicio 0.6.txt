@@ -1,0 +1,13 @@
+sequenceDiagram
+0.6 Creación de una Nueva Nota en la SPA
+
+Usuario ->> Navegador: Escribe algo en el campo de texto y hace clic en "Save"
+Navegador ->> Navegador: Guarda la nota localmente
+Navegador ->> Servidor: Realiza una solicitud POST para crear la nota
+activate Servidor
+Servidor -->> Navegador: 200 OK (Nota creada en el servidor)
+deactivate Servidor
+
+Note right of Navegador: La SPA actualiza la vista con la nueva nota
+
+Navegador -->> Usuario: Muestra la SPA con la nueva nota

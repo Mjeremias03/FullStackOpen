@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant browser
+    participant server
+    participant user
+
+    user->>browser: Escribe algo en el campo de texto y hace clic en "Save"
+    browser->>browser: Guarda la nota localmente
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: 200 OK (Nota guardada en el servidor)
+    deactivate server
+
+    user->>browser: Navega a la página https://studies.cs.helsinki.fi/exampleapp/notes
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    Note right of browser: El navegador comienza a ejecutar el código JavaScript que obtiene el JSON desde el servidor
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
+
+    Note right of browser: El navegador ejecuta la función de devolución de llamada que representa las notas

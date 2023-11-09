@@ -1,0 +1,21 @@
+sequenceDiagram
+0.5 Acceso a la Aplicación de Una Sola Página (SPA)
+
+Usuario ->> Navegador: Accede a https://studies.cs.helsinki.fi/exampleapp/spa
+Navegador ->> Servidor: Realiza una solicitud GET
+activate Servidor
+Servidor -->> Navegador: Responde con la página SPA
+deactivate Servidor
+Navegador -->> Navegador: Carga la página SPA
+Navegador -->> Navegador: Carga los recursos JavaScript y CSS
+
+Note right of Navegador: El navegador ejecuta la aplicación de una sola página (SPA)
+
+Navegador -->> Servidor: Realiza solicitudes AJAX al servidor
+activate Servidor
+Servidor -->> Navegador: Responde con datos JSON
+deactivate Servidor
+
+Note right of Navegador: La SPA actualiza la vista con los datos recibidos
+
+Navegador -->> Usuario: Muestra la SPA
